@@ -25,9 +25,9 @@ flowchart TD
 
     Q --> QU --> S1 --> S2 --> EV
 
-    P2["Part 2 · location filter"]:::part
-    P1["Part 1 · explainable scoring"]:::part
-    P3["Part 3 · how we know it is better"]:::part
+    P2["Location filter · Part 2"]:::part
+    P1["Explainable scoring · Part 1"]:::part
+    P3["How we know it is better · Part 3"]:::part
     P2 -.-> S1
     P1 -.-> S2
     P3 -.-> EV
