@@ -30,16 +30,27 @@ def seniority_match(e: Experience, floor: str | None) -> float:
     return settings.seniority_score_below
 
 
+def _end_year(e: Experience) -> int:
+    return e.end_year if e.end_year is not None else settings.current_year
+
+
+def _start_year(e: Experience) -> int:
+    return e.start_year if e.start_year is not None else _end_year(e)
+
+
+def _years(e: Experience) -> int:
+    return max(0, _end_year(e) - _start_year(e))
+
+
 def recency_weight(e: Experience, current_year: int = settings.current_year) -> float:
-    years_since = max(0, current_year - e.end_year)
+    years_since = max(0, current_year - _end_year(e))
     # 0.5 is the definition of half-life: the weight halves every recency_halflife_years.
     return 0.5 ** (years_since / settings.recency_halflife_years)
 
 
 def duration_weight(e: Experience) -> float:
-    years = max(0, e.end_year - e.start_year)
     floor = settings.duration_floor
-    return floor + (1 - floor) * min(1.0, years / settings.duration_cap_years)
+    return floor + (1 - floor) * min(1.0, _years(e) / settings.duration_cap_years)
 
 
 @dataclass
@@ -48,10 +59,6 @@ class ScoreBreakdown:
     requirements: dict
     experiences: list[dict]
     explanation: list[str] = field(default_factory=list)
-
-
-def _years(e: Experience) -> int:
-    return max(0, e.end_year - e.start_year)
 
 
 def score_candidate(experiences: list[Experience], intent: QueryIntent) -> ScoreBreakdown:

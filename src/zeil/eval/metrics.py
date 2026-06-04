@@ -6,10 +6,9 @@ import math
 
 
 def precision_at_k(ranked: list[str], relevant: set[str], k: int) -> float:
-    topk = ranked[:k]
-    if not topk:
+    if k <= 0:
         return 0.0
-    return sum(1 for x in topk if x in relevant) / len(topk)
+    return sum(1 for x in ranked[:k] if x in relevant) / k
 
 
 def recall_at_k(ranked: list[str], relevant: set[str], k: int) -> float:

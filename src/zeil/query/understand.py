@@ -28,7 +28,7 @@ def understand(query: str, proximity_km: float | None = None) -> QueryIntent:
             break
 
     for skill in SKILL_VOCAB:
-        m = re.search(rf'(\d+)\s*\+?\s*years?\s+{skill}', low)
+        m = re.search(rf'(\d+)\s*\+?\s*years?\s+{skill}\b', low)
         if m:
             qi.skills.append(SkillReq(skill, float(m.group(1))))
         elif re.search(rf'\b{skill}\b', low):
@@ -39,7 +39,9 @@ def understand(query: str, proximity_km: float | None = None) -> QueryIntent:
             qi.domain = domain
             break
 
-    m = re.search(r'\b(?:near|in|around)\s+([A-Z][A-Za-z\s]+)', query)
+    # Capture 1–3 words after near/around/in, case-insensitive. The gazetteer then
+    # decides validity, so an over-capture degrades to "unresolved" rather than a crash.
+    m = re.search(r'\b(?:near|around|in)\s+([A-Za-z]+(?:[\s-][A-Za-z]+){0,2})', query, re.IGNORECASE)
     if m:
         qi.location = m.group(1).strip()
     return qi

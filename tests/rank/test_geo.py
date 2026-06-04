@@ -15,6 +15,11 @@ def test_decay_closer_scores_higher():
     assert proximity_decay(1, scale_km=25) > proximity_decay(20, scale_km=25)
 
 
+def test_decay_zero_scale_does_not_crash():
+    assert proximity_decay(0, scale_km=0) == 1.0
+    assert proximity_decay(5, scale_km=0) == 0.0
+
+
 def test_vague_country_profile_is_dropped_for_proximity_role():
     intent = QueryIntent(raw='truck driver near Parramatta', location='Parramatta', proximity_km=30)
     doc = {'location_level': 'country', 'location_point': None}

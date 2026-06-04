@@ -4,17 +4,18 @@ from __future__ import annotations
 
 import argparse
 
+from functools import lru_cache
+
 from zeil.config import settings
 from zeil.eval.harness import print_report, run
 from zeil.index.ingest import ingest
 from zeil.location.normalize import Gazetteer
 from zeil.query.retrieve import retrieve
 from zeil.query.understand import understand
-from zeil.rank.geo import apply_proximity
-from zeil.rank.model import Experience
-from zeil.rank.score import score_candidate
+from zeil.rank.pipeline import rank_docs
 
 
+@lru_cache(maxsize=1)
 def _gz():
     return Gazetteer.load(settings.gazetteer_path)
 
@@ -24,32 +25,10 @@ def cmd_ingest(_):
 
 
 def _search(query, proximity_km=None, k=settings.search_top_k):
-    gz, intent = _gz(), understand(query, proximity_km=proximity_km)
-    out = []
-    for d in retrieve(intent, gz):
-        exps = [
-            Experience(
-                **{
-                    kk: e[kk]
-                    for kk in (
-                        'title',
-                        'company',
-                        'start_year',
-                        'end_year',
-                        'description',
-                        'skills',
-                        'seniority',
-                        'domain',
-                    )
-                }
-            )
-            for e in d['experiences']
-        ]
-        bd = score_candidate(exps, intent)
-        final = apply_proximity(bd.score, d, intent, gz)
-        out.append((final, d['name'], bd))
-    out.sort(key=lambda t: t[0], reverse=True)
-    return out[:k]
+    gz = _gz()
+    intent = understand(query, proximity_km=proximity_km)
+    ranked = rank_docs(intent, retrieve(intent, gz), gz)
+    return [(final, d['name'], bd) for d, bd, final in ranked][:k]
 
 
 def cmd_search(a):

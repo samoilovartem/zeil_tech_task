@@ -8,6 +8,10 @@ def test_precision_and_recall():
     assert recall_at_k(ranked, relevant, 4) == 2 / 3  # found 2 of 3 relevant
 
 
+def test_precision_divides_by_k_not_returned_count():
+    assert precision_at_k(['a'], {'a'}, 5) == 0.2
+
+
 def test_mrr_uses_first_hit_rank():
     assert mrr(['x', 'a', 'b'], {'a'}) == 0.5  # first hit at rank 2
 

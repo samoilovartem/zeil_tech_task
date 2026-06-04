@@ -11,39 +11,13 @@ from zeil.eval.metrics import mrr, ndcg_at_k, precision_at_k, recall_at_k
 from zeil.location.normalize import Gazetteer
 from zeil.query.retrieve import retrieve
 from zeil.query.understand import understand
-from zeil.rank.geo import apply_proximity
-from zeil.rank.model import Experience
-from zeil.rank.score import score_candidate
+from zeil.rank.pipeline import rank_docs
 
 
 def _rank(query: str, gz: Gazetteer, proximity_km=None) -> list[str]:
     intent = understand(query, proximity_km=proximity_km)
-    docs = retrieve(intent, gz)
-    scored = []
-    for d in docs:
-        exps = [
-            Experience(
-                **{
-                    k: e[k]
-                    for k in (
-                        'title',
-                        'company',
-                        'start_year',
-                        'end_year',
-                        'description',
-                        'skills',
-                        'seniority',
-                        'domain',
-                    )
-                }
-            )
-            for e in d['experiences']
-        ]
-        bd = score_candidate(exps, intent)
-        final = apply_proximity(bd.score, d, intent, gz)
-        scored.append((d['_id'], final))
-    scored.sort(key=lambda t: t[1], reverse=True)
-    return [i for i, _ in scored]
+    ranked = rank_docs(intent, retrieve(intent, gz), gz)
+    return [d['_id'] for d, _bd, _final in ranked]
 
 
 def run(queries_path=None, k=settings.eval_k) -> list[dict]:

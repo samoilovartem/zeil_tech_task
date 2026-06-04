@@ -26,7 +26,7 @@ class Experience:
     title: str
     company: str
     start_year: int
-    end_year: int
+    end_year: int | None  # None = ongoing ("present") role
     description: str
     skills: list[str]
     seniority: str

@@ -28,7 +28,7 @@ COMPANY_INDUSTRY = {
     'paypal': 'financial_services',
 }
 DOMAIN_KEYWORDS = {
-    'financial_services': ['trading', 'payments', 'banking', 'fintech', 'risk', 'settlement'],
+    'financial_services': ['trading', 'payments', 'banking', 'fintech', 'settlement'],
     'healthcare': ['clinical', 'patient', 'ehr', 'medical'],
 }
 
@@ -48,8 +48,9 @@ def extract_seniority(title: str) -> str:
 
 def extract_domain(company: str, description: str) -> str | None:
     c = company.lower().strip()
-    if c in COMPANY_INDUSTRY:
-        return COMPANY_INDUSTRY[c]
+    for known, industry in COMPANY_INDUSTRY.items():
+        if re.search(rf'\b{re.escape(known)}\b', c):
+            return industry
     text = description.lower()
     for domain, kws in DOMAIN_KEYWORDS.items():
         if any(re.search(rf'\b{kw}\b', text) for kw in kws):

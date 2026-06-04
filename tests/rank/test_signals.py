@@ -49,3 +49,9 @@ def test_duration_weight_rewards_longer_but_capped():
     short = duration_weight(exp(start_year=2023, end_year=2024))
     long = duration_weight(exp(start_year=2014, end_year=2024))
     assert long > short and long <= 1.0
+
+
+def test_ongoing_role_with_none_end_year_does_not_crash():
+    e = exp(start_year=2020, end_year=None)
+    assert recency_weight(e, current_year=2026) == 1.0
+    assert 0 < duration_weight(e) <= 1.0

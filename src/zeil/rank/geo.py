@@ -19,6 +19,8 @@ def haversine_km(lat1, lon1, lat2, lon2) -> float:
 
 def proximity_decay(distance_km: float, scale_km: float = settings.default_proximity_scale_km) -> float:
     """Gaussian-ish decay in [0,1]: 1.0 at the target, ~0 far away."""
+    if scale_km <= 0:
+        return 1.0 if distance_km == 0 else 0.0
     return math.exp(-(distance_km**2) / (2 * scale_km**2))
 
 
