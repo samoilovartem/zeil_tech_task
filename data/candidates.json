@@ -1,0 +1,64 @@
+[
+  {
+    "id": "c1",
+    "name": "The Assessment Candidate",
+    "location_raw": "London, UK",
+    "experiences": [
+      {"title": "Software Engineer", "company": "Goldman Sachs", "start_year": 2018, "end_year": 2021, "description": "Built trading APIs in Python and Java"},
+      {"title": "Backend Lead", "company": "Stripe", "start_year": 2021, "end_year": 2024, "description": "Led payments infrastructure team, Python microservices"},
+      {"title": "Freelance Developer", "company": "Freelance", "start_year": 2016, "end_year": 2018, "description": "Various web projects, mostly PHP"}
+    ]
+  },
+  {
+    "id": "c2",
+    "name": "Junior Python Web Dev",
+    "location_raw": "Berlin",
+    "experiences": [
+      {"title": "Junior Developer", "company": "SmallShop", "start_year": 2022, "end_year": 2024, "description": "Django web apps in Python, some React"}
+    ]
+  },
+  {
+    "id": "c3",
+    "name": "Senior Java Banking Engineer",
+    "location_raw": "Singapore",
+    "experiences": [
+      {"title": "Senior Engineer", "company": "DBS Bank", "start_year": 2017, "end_year": 2024, "description": "Core banking services in Java, risk systems"}
+    ]
+  },
+  {
+    "id": "h1", "name": "Hanoi Variant A", "location_raw": "Hà Nội",
+    "experiences": [{"title": "Driver", "company": "Local", "start_year": 2020, "end_year": 2024, "description": "Delivery driver"}]
+  },
+  {
+    "id": "h2", "name": "Hanoi Variant B", "location_raw": "Ha noi",
+    "experiences": [{"title": "Driver", "company": "Local", "start_year": 2019, "end_year": 2024, "description": "Truck driver"}]
+  },
+  {
+    "id": "h3", "name": "Hanoi Variant C", "location_raw": "Vietnam - Hanoi",
+    "experiences": [{"title": "Driver", "company": "Local", "start_year": 2018, "end_year": 2024, "description": "Long haul driver"}]
+  },
+  {
+    "id": "t1", "name": "Parramatta Trucker", "location_raw": "Parramatta",
+    "experiences": [{"title": "Truck Driver", "company": "Logistics Co", "start_year": 2015, "end_year": 2024, "description": "HR licence truck driver, freight"}]
+  },
+  {
+    "id": "t2", "name": "Harris Park Trucker", "location_raw": "Harris Park",
+    "experiences": [{"title": "Truck Driver", "company": "Freight Co", "start_year": 2016, "end_year": 2024, "description": "Heavy vehicle driver"}]
+  },
+  {
+    "id": "t3", "name": "Blacktown Trucker", "location_raw": "Blacktown",
+    "experiences": [{"title": "Truck Driver", "company": "Haul Co", "start_year": 2014, "end_year": 2024, "description": "Truck driver, interstate"}]
+  },
+  {
+    "id": "t4", "name": "Bondi Trucker", "location_raw": "Bondi",
+    "experiences": [{"title": "Truck Driver", "company": "Move Co", "start_year": 2018, "end_year": 2024, "description": "Delivery truck driver"}]
+  },
+  {
+    "id": "t5", "name": "Vague NSW Trucker", "location_raw": "NSW",
+    "experiences": [{"title": "Truck Driver", "company": "Road Co", "start_year": 2013, "end_year": 2024, "description": "Long distance truck driver"}]
+  },
+  {
+    "id": "t6", "name": "Vague Australia Trucker", "location_raw": "Australia",
+    "experiences": [{"title": "Truck Driver", "company": "Big Co", "start_year": 2012, "end_year": 2024, "description": "Truck driver"}]
+  }
+]

@@ -1,0 +1,15 @@
+[
+  {
+    "query": "Senior backend engineer, 5+ years Python, financial services",
+    "judgments": {"c1": 3, "c3": 2, "c2": 1}
+  },
+  {
+    "query": "Python developer",
+    "judgments": {"c1": 3, "c2": 3, "c3": 0}
+  },
+  {
+    "query": "truck driver near Parramatta",
+    "proximity_km": 30,
+    "judgments": {"t1": 3, "t2": 3, "t3": 2, "t4": 1}
+  }
+]

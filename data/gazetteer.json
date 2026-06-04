@@ -1,0 +1,58 @@
+[
+  {
+    "id": "vn-hanoi",
+    "name": "Hanoi",
+    "aliases": ["hanoi", "ha noi", "hanoi vietnam", "vietnam hanoi"],
+    "level": "city",
+    "hierarchy": {"city": "Hanoi", "region": "Hanoi", "country": "Vietnam"},
+    "lat": 21.0278, "lon": 105.8342
+  },
+  {
+    "id": "au-parramatta",
+    "name": "Parramatta",
+    "aliases": ["parramatta", "parramatta sydney", "parramatta nsw"],
+    "level": "suburb",
+    "hierarchy": {"suburb": "Parramatta", "city": "Sydney", "region": "NSW", "country": "Australia"},
+    "lat": -33.8150, "lon": 151.0011
+  },
+  {
+    "id": "au-harris-park",
+    "name": "Harris Park",
+    "aliases": ["harris park"],
+    "level": "suburb",
+    "hierarchy": {"suburb": "Harris Park", "city": "Sydney", "region": "NSW", "country": "Australia"},
+    "lat": -33.8230, "lon": 151.0050
+  },
+  {
+    "id": "au-blacktown",
+    "name": "Blacktown",
+    "aliases": ["blacktown"],
+    "level": "suburb",
+    "hierarchy": {"suburb": "Blacktown", "city": "Sydney", "region": "NSW", "country": "Australia"},
+    "lat": -33.7710, "lon": 150.9060
+  },
+  {
+    "id": "au-bondi",
+    "name": "Bondi",
+    "aliases": ["bondi", "bondi beach"],
+    "level": "suburb",
+    "hierarchy": {"suburb": "Bondi", "city": "Sydney", "region": "NSW", "country": "Australia"},
+    "lat": -33.8915, "lon": 151.2767
+  },
+  {
+    "id": "au-nsw",
+    "name": "New South Wales",
+    "aliases": ["nsw", "new south wales"],
+    "level": "region",
+    "hierarchy": {"region": "NSW", "country": "Australia"},
+    "lat": -32.0, "lon": 147.0
+  },
+  {
+    "id": "au",
+    "name": "Australia",
+    "aliases": ["australia"],
+    "level": "country",
+    "hierarchy": {"country": "Australia"},
+    "lat": -25.0, "lon": 133.0
+  }
+]
