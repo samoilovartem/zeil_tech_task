@@ -3,7 +3,7 @@ name = "zeil-tech-task"
 version = "0.1.0"
 requires-python = ">=3.14"
 dependencies = [
-    "opensearch-py>=2.6",
+    "opensearch-py>=3",
     "sentence-transformers>=3.0",
     "numpy>=1.26",
     "setuptools>=82.0.1",
